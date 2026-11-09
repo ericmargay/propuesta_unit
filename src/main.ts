@@ -122,7 +122,9 @@ function bomTable(g: BomGroup): string {
     const tag = i.alt ? '' : i.unit ? `<a class="tag ok" href="${i.unit}" target="_blank" rel="noopener">ficha UNIT</a>` : i.outside ? '<span class="tag out">fuera de UNIT</span>' : '<span class="tag">buscar en tienda</span>';
     return `<tr class="${i.alt ? 'alt' : ''}"><td>${i.name}${tag}${i.note ? `<span class="note">${i.note}</span>` : ''}</td><td class="num">${i.alt ? '—' : i.qty}</td><td class="num">${i.price === null ? 'por cotizar' : i.price}</td><td class="num">${i.alt || i.price === null ? '—' : i.qty * i.price}</td></tr>`;
   }).join('');
-  return `<div class="table-wrap card" data-group="${g.id}" style="padding:0;margin-bottom:14px"><table><caption>${g.title}</caption><thead><tr><th>Pieza</th><th class="num">Cant.</th><th class="num">c/u</th><th class="num">MXN</th></tr></thead><tbody>${rows}<tr class="total"><td colspan="3">Subtotal</td><td class="num">${mxn(groupTotal(g))}</td></tr></tbody></table></div>`;
+  const note = g.note ? `<span class="note" style="font-family:var(--font);font-weight:400;font-size:13px;margin-top:4px">${g.note}</span>` : '';
+  const body = g.items.length ? `${rows}<tr class="total"><td colspan="3">Subtotal</td><td class="num">${mxn(groupTotal(g))}</td></tr>` : '<tr class="total"><td colspan="3">Sin piezas nuevas</td><td class="num">MXN 0</td></tr>';
+  return `<div class="table-wrap card" data-group="${g.id}" style="padding:0;margin-bottom:14px"><table><caption>${g.title}${note}</caption><thead><tr><th>Pieza</th><th class="num">Cant.</th><th class="num">c/u</th><th class="num">MXN</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 function servicesTable(title: string, rows: Array<{ name: string; detail: string; estimate: number | null; unitService: string }>): string {
   const body = rows.map((r) => `<tr><td>${r.name}<span class="note">${r.detail}</span></td><td>${r.unitService}</td><td class="num">${r.estimate === null ? 'por cotizar' : mxn(r.estimate)}</td></tr>`).join('');
@@ -130,7 +132,8 @@ function servicesTable(title: string, rows: Array<{ name: string; detail: string
   return `<div class="table-wrap card" style="padding:0"><table><caption>${title}</caption><thead><tr><th>Trabajo</th><th>Con quién</th><th class="num">Estimado en taller</th></tr></thead><tbody>${body}${total ? `<tr class="total"><td colspan="2">Referencia de taller externo (CDMX)</td><td class="num">${mxn(total)}</td></tr>` : ''}</tbody></table></div>`;
 }
 
-$('#bom-shadows').innerHTML = SHADOWS_BOM.map(bomTable).join('') + `<p class="small">Las cuatro versiones juntas, compartiendo piezas: <b class="mono" style="color:var(--fg)">${mxn(unionTotal(SHADOWS_BOM))}</b>.</p>`;
+const shadowsUnit = SHADOWS_BOM.map((g) => ({ ...g, items: g.items.filter((i) => !i.outside) }));
+$('#bom-shadows').innerHTML = SHADOWS_BOM.map(bomTable).join('') + `<p class="small">Las cinco versiones juntas, con la base de la versión 0 una sola vez: <b class="mono" style="color:var(--fg)">${mxn(unionTotal(SHADOWS_BOM))}</b>.</p>`;
 $('#bom-praxi').innerHTML = PRAXI_BOM.map(bomTable).join('');
 $('#services-praxi').innerHTML = servicesTable('Servicios de taller · Praxiboscopic', PRAXI_SERVICES);
 $('#bom-signage').innerHTML = SIGNAGE_BOM.map(bomTable).join('');
@@ -138,7 +141,8 @@ $('#services-signage').innerHTML = servicesTable('Servicios de taller · smart_s
 selectVersion(0);
 
 // resumen
-const shadowsTotal = unionTotal(SHADOWS_BOM);
+const shadowsTotal = unionTotal(shadowsUnit);
+const shadowsOutside = SHADOWS_BOM.flatMap((g) => g.items).filter((i) => i.outside && !i.alt).reduce((a, i) => a + i.qty * (i.price ?? 0), 0);
 const praxiTotal = PRAXI_BOM.reduce((a, g) => a + groupTotal(g), 0);
 const praxiOutside = PRAXI_BOM.flatMap((g) => g.items).filter((i) => i.outside && !i.alt).reduce((a, i) => a + i.qty * (i.price ?? 0), 0);
 const signageTotal = SIGNAGE_BOM.reduce((a, g) => a + groupTotal(g), 0);
@@ -148,10 +152,10 @@ $('#resumen').innerHTML = `<div class="table-wrap card" style="padding:0"><table
   <caption>Lo que pedimos a UNIT</caption>
   <thead><tr><th>Proyecto</th><th>Piezas del catálogo</th><th>Servicios de taller</th></tr></thead>
   <tbody>
-    <tr><td><b>Shadows &amp; Lights</b><span class="note">música sincronizada, versiones 1–4</span></td><td class="num">${mxn(shadowsTotal)}</td><td>—</td></tr>
+    <tr><td><b>Shadows &amp; Lights</b><span class="note">protección de la obra (versión 0) y música, versiones 1–4</span></td><td class="num">${mxn(shadowsTotal)}</td><td>—</td></tr>
     <tr><td><b>Praxiboscopic</b><span class="note">mesa de dos tambores</span></td><td class="num">${mxn(praxiTotal - praxiOutside)}</td><td>impresión 3D (28 piezas, 16 h) y corte láser (41 piezas)<span class="note">≈ ${mxn(praxiServices)} en taller externo</span></td></tr>
     <tr><td><b>smart_signage</b><span class="note">cuatro letras, tapete y mesa</span></td><td class="num">${mxn(signageTotal - signageOutside)}</td><td>corte láser de 12 piezas grandes y 4 fondos; 64 esquineros impresos</td></tr>
-    <tr class="total"><td>Piezas en total</td><td class="num">${mxn(shadowsTotal + praxiTotal - praxiOutside + signageTotal - signageOutside)}</td><td class="small" style="font-weight:400">más ${mxn(praxiOutside + signageOutside)} que compramos fuera de UNIT</td></tr>
+    <tr class="total"><td>Piezas en total</td><td class="num">${mxn(shadowsTotal + praxiTotal - praxiOutside + signageTotal - signageOutside)}</td><td class="small" style="font-weight:400">más ${mxn(shadowsOutside + praxiOutside + signageOutside)} que compramos fuera de UNIT</td></tr>
   </tbody></table></div>`;
 
 // capturas: el script de verificación espera esta marca

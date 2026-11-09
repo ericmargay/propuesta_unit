@@ -119,7 +119,8 @@ section.block.tight { padding-top: clamp(40px, 6vw, 72px); border-top: 0; }
 .v-label span { display: block; color: var(--fg-2); font-family: var(--mono); font-size: 10px; }
 .v-label em { display: block; color: var(--fg-2); font-style: normal; font-size: 10px; margin-top: 3px; }
 .v-label a { pointer-events: auto; }
-.v-label--comp { transform: translate(-50%, -100%); }
+.v-label--comp { transform: translate(-50%, -100%); max-width: 140px; }
+.v-label--comp b { white-space: nowrap; }
 .v-label--part { transform: translate(-50%, -100%); border-color: var(--amber); max-width: 220px; font-size: 12px; }
 .v-label--sheet, .v-label--layer, .v-label--sensor { transform: translate(-50%, -50%); background: rgba(14, 14, 18, 0.6); }
 .v-label--sheet { max-width: 150px; }

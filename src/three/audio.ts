@@ -78,7 +78,8 @@ export class AudioBench {
         group.add(ant);
         mats.push(antMat);
       }
-      const label = this.viewer.label(`<b>${def.name}</b>${def.price ? `<span>MXN ${def.price}${def.link ? ` · <a href="${def.link}" target="_blank" rel="noopener">ficha UNIT</a>` : ''}</span>` : ''}`, 'v-label--comp');
+      const second = def.price ? `MXN ${def.price}${def.link ? ` · <a href="${def.link}" target="_blank" rel="noopener">ficha</a>` : ''}` : def.tag ?? '';
+      const label = this.viewer.label(`<b>${def.name}</b>${second ? `<span>${second}</span>` : ''}`, 'v-label--comp');
       if (def.note) label.element.title = def.note;
       label.position.set(0, H + 14, D / 2 + 4);
       label.visible = false;

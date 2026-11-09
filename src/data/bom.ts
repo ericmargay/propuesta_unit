@@ -13,46 +13,49 @@ export interface BomItem {
   outside?: boolean; // se compra fuera de UNIT
 }
 
-export interface BomGroup { id: string; title: string; items: BomItem[]; }
+export interface BomGroup { id: string; title: string; items: BomItem[]; note?: string; }
 
 const U = (slug: string) => `https://uelectronics.com/producto/${slug}/`;
 
 export const SHADOWS_BOM: BomGroup[] = [
   {
+    id: 'v0', title: 'Versión 0 · protección de la obra (base de todas)', note: 'La ESP32-S3 SuperMini y la fuente de 5 V · 20 A ya están en la obra. Esto es lo que les falta, y va en las cinco versiones.', items: [
+      { name: '74AHCT125 (3,3 V → 5 V)', qty: 1, price: 25, key: 'shifter', note: 'la WS2812B a 5 V pide al menos 3,5 V en el dato; la ESP32-S3 da 3,3 V' },
+      { name: 'Capacitor cerámico 100 nF', qty: 1, price: 2, key: 'c100n', note: 'desacoplo del 74AHCT125' },
+      { name: 'Resistencia 330 Ω', qty: 1, price: 1, key: 'r330', note: 'en serie en el dato, junto a la entrada de la tira' },
+      { name: 'Capacitor electrolítico 1000 µF 10 V', qty: 1, price: 6, unit: U('capacitor-electrolitico-50v'), key: 'cap1000-tira', note: 'entre 5 V y GND en la entrada de la tira' },
+      { name: 'Fusible 10 A con portafusible en línea', qty: 1, price: 25, key: 'fuse', note: 'a la salida de la fuente de 20 A; la tira pide como máximo ≈ 7,2 A' },
+      { name: 'Mini protoboard 170 puntos', qty: 1, price: 20, unit: U('mini-protoboard-170-pts'), key: 'proto', note: 'junto a la ESP32-S3, en la esquina de la caja' },
+      { name: 'Jumpers dupont macho-macho (paquete)', qty: 1, price: 20, key: 'jumpers' },
+      { name: 'Cable 18 AWG rojo y negro (m)', qty: 2, price: 15, key: 'cable18', note: 'fuente → tira y puente de 5 V al final de la tira' },
+    ],
+  },
+  {
     id: 'v1', title: 'Versión 1 · música grabada (DFPlayer Mini)', items: [
-      { name: 'DFPlayer Mini MH2024K-24SS', qty: 1, price: 45, unit: U('dfplayer-mini-reproductor-mp3-mh2024k-24ss'), key: 'dfplayer' },
+      { name: 'DFPlayer Mini MH2024K-24SS', qty: 1, price: 45, unit: U('dfplayer-mini-reproductor-mp3-mh2024k-24ss'), key: 'dfplayer', note: 'por la UART1 de la ESP32-S3 (GPIO 9)' },
       { name: 'Bocina 4 Ω 3 W', qty: 1, price: 35, unit: U('bocinas-4-y-8-ohm'), key: 'bocina' },
       { name: 'UNIT PAM8403 · 3 W + 3 W', qty: 1, price: 35, unit: U('unit-pam8403-amplificador-de-audio'), key: 'pam', note: 'estéreo desde DAC_L/DAC_R' },
       { name: 'Jack 3,5 mm estéreo hembra para chasis', qty: 1, price: 15, key: 'jack', note: 'salida de línea a la interfaz Arturia' },
       { name: 'microSD 8–32 GB', qty: 1, price: 90, key: 'sd' },
-      { name: 'Capacitor 1000 µF', qty: 1, price: 6, unit: U('capacitor-electrolitico-50v'), key: 'cap1000' },
-      { name: 'Resistencia 1 kΩ', qty: 1, price: 1, key: 'r1k' },
+      { name: 'Capacitor 1000 µF (alimentación del DFPlayer)', qty: 1, price: 6, unit: U('capacitor-electrolitico-50v'), key: 'cap1000-df' },
+      { name: 'Resistencia 1 kΩ', qty: 1, price: 1, key: 'r1k', note: 'en serie entre el GPIO 9 y el RX del DFPlayer' },
     ],
   },
   {
     id: 'v2', title: 'Versión 2 · Ethernet', items: [
-      { name: 'WT32-ETH01 (ESP32 + LAN8720)', qty: 1, price: 190, unit: U('wt32-eth01-placa-de-desarrollo-esp32-con-ethernet'), key: 'wt32' },
-      { name: 'Alternativa: ESP32-S3 SuperMini + W5500 Lite', qty: 1, price: 215, unit: U('w5500-convertidor-ethernet-spi-a-lan'), alt: true },
-      { name: '74AHCT125 (3,3 V → 5 V)', qty: 1, price: 25, key: 'shifter' },
-      { name: 'Adaptador USB-serie CP2102 3,3 V', qty: 1, price: 60, key: 'cp2102', note: 'el WT32-ETH01 no trae USB' },
-      { name: 'Fuente 5 V 10 A', qty: 1, price: 220, key: 'psu5' },
+      { name: 'W5500 Lite (Ethernet por SPI)', qty: 1, price: 95, unit: U('w5500-convertidor-ethernet-spi-a-lan'), key: 'w5500', note: 'se conecta a la ESP32-S3 de la obra' },
+      { name: 'Alternativa: WT32-ETH01 + adaptador USB-serie CP2102', qty: 1, price: 250, unit: U('wt32-eth01-placa-de-desarrollo-esp32-con-ethernet'), alt: true },
       { name: 'Cable Ethernet Cat 5e 10 m', qty: 1, price: 60, key: 'eth', outside: true },
     ],
   },
   {
-    id: 'v3', title: 'Versión 3 · Wi-Fi', items: [
-      { name: 'ESP32-S3 SuperMini', qty: 1, price: 120, unit: U('esp32-s3-supermini-placa-de-desarrollo-usb-tipo-c'), key: 's3' },
-      { name: 'Alternativa: ESP32 DevKitC V4', qty: 1, price: 145, unit: U('esp32-devkitc-v4-esp32-wroom-32d-32u'), alt: true },
-      { name: '74AHCT125', qty: 1, price: 25, key: 'shifter' },
-    ],
+    id: 'v3', title: 'Versión 3 · Wi-Fi', note: 'Sin piezas nuevas: la ESP32-S3 de la obra ya tiene Wi-Fi.', items: [],
   },
   {
-    id: 'v4', title: 'Versión 4 · radio nRF24L01+', items: [
+    id: 'v4', title: 'Versión 4 · radio nRF24L01+', note: 'El receptor es la ESP32-S3 de la obra.', items: [
       { name: 'nRF24L01+ PA LNA con antena', qty: 2, price: 85, key: 'nrf', note: 'por confirmar en UNIT' },
       { name: 'ESP32-C3 SuperMini (transmisor)', qty: 1, price: 90, unit: U('esp32-c3-supermini-tipo-c-tarjeta-de-expansion'), key: 'c3' },
-      { name: 'ESP32-S3 SuperMini (receptor, el de la versión 3)', qty: 1, price: 120, unit: U('esp32-s3-supermini-placa-de-desarrollo-usb-tipo-c'), key: 's3' },
-      { name: 'Capacitor 10–100 µF', qty: 2, price: 6, key: 'cap10' },
-      { name: '74AHCT125', qty: 1, price: 25, key: 'shifter' },
+      { name: 'Capacitor 10–100 µF', qty: 2, price: 6, key: 'cap10', note: 'en VCC de cada nRF24' },
     ],
   },
 ];

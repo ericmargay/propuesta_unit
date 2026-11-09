@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="grid cols-3" style="margin-top: 48px">
-        <div class="card state reveal"><i class="dot"></i><div><h4>Shadows &amp; Lights</h4><p class="small">Construida. Cuadro de 60 × 60 con 28 placas y 120 LEDs; Arduino Mega. Simulador con VM de Arduino, exportación de video y generador de secuencias.</p></div></div>
+        <div class="card state reveal"><i class="dot"></i><div><h4>Shadows &amp; Lights</h4><p class="small">Construida. Cuadro de 60 × 60 con 28 placas y 120 LEDs; una ESP32-S3 SuperMini en una esquina de la caja. Simulador con VM de Arduino, exportación de video y generador de secuencias.</p></div></div>
         <div class="card state reveal"><i class="dot next"></i><div><h4>Praxiboscopic</h4><p class="small">Diseñada hasta el último archivo: 122 pruebas en verde, STL y DXF listos, lista de compras con precio en cada renglón. Falta cortar, imprimir y armar.</p></div></div>
         <div class="card state reveal"><i class="dot new"></i><div><h4>smart_signage</h4><p class="small">Nueva. Las cuatro letras de UNIT a 1,20 m en acrílico opal, con NeoPixel y sensores ESP32 inalámbricos. Geometría, firmware y lista de compras ya están en su repo.</p></div></div>
       </div>
@@ -86,7 +86,7 @@
       <div class="split" style="margin-bottom: 40px">
         <div class="reveal">
           <p class="lead">Un cuadro de 60 × 60 cm. Veintiocho placas de MDF puestas de canto. Una tapa con un hueco de 50 × 50 y, escondida bajo su borde, una tira de 120 LEDs inclinada 30°.</p>
-          <p class="muted">La luz nunca se ve directa: solo sus sombras. Cuando un cometa recorre la tira, las sombras de las placas giran, se alargan y se cruzan como manecillas. Las seis secuencias están medidas fotograma a fotograma de los videos originales y corren en un Arduino Mega 2560 con FastLED.</p>
+          <p class="muted">La luz nunca se ve directa: solo sus sombras. Cuando un cometa recorre la tira, las sombras de las placas giran, se alargan y se cruzan como manecillas. Las seis secuencias están medidas fotograma a fotograma de los videos originales y corren en una ESP32-S3 SuperMini con FastLED, escondida en una esquina de la caja.</p>
           <p class="muted">El modelo de la derecha es el de fabricación: las posiciones de las placas, la altura de la tapa y la tira son las reales, y las secuencias son el mismo código que corre en la placa, portado línea por línea.</p>
         </div>
         <div class="reveal">
@@ -112,7 +112,7 @@
         <div class="split rev">
           <div class="reveal">
             <p class="muted">Hoy la obra corre sola. Queremos que cada secuencia tenga su música y que, en la versión más ambiciosa, la luz y el sonido salgan de la misma partitura: Ableton Live toca y, nota a nota, despierta colores, secuencias y píxeles.</p>
-            <p class="muted">Lo diseñamos en cinco versiones, de la más simple a la más robusta, con las piezas más compactas del catálogo de UNIT. Todas comparten un protocolo de 8 bytes y un mismo firmware para ESP32 con el transporte intercambiable; el firmware, el puente MIDI y las pruebas ya están escritos. Lo que falta es el hardware.</p>
+            <p class="muted">Lo diseñamos en cinco versiones, de la más simple a la más robusta, con las piezas más compactas del catálogo de UNIT. Todas parten de la versión 0, la obra de hoy con su protección completa (74AHCT125, fusible, 330 Ω y 1000 µF en una mini protoboard), y usan la misma ESP32-S3 que ya va en la caja. Las versiones 2 a 4 comparten un protocolo de 8 bytes y un mismo firmware con el transporte intercambiable; el firmware, el puente MIDI y las pruebas ya están escritos. Lo que falta es el hardware.</p>
           </div>
           <div class="reveal">
             <div class="tabs" id="version-tabs"></div>
@@ -127,18 +127,18 @@
           <caption>Cómo se sincroniza cada versión</caption>
           <thead><tr><th>Versión</th><th>Sincronía</th><th>Latencia</th><th>Qué hace falta</th><th>Estado</th></tr></thead>
           <tbody>
-            <tr><td><b>0 · Obra actual</b></td><td>Sin música; secuencias autónomas</td><td class="num">—</td><td>Nada: Mega 2560, tira y fuente</td><td><span class="state-pill ok">construida</span></td></tr>
-            <tr><td><b>1 · Grabación</b></td><td>El Mega manda «reproducir» a un DFPlayer Mini al arrancar; las secuencias se encajan a mano en la línea de tiempo</td><td class="num">~150 ms fijos</td><td>DFPlayer Mini, bocina o jack a la interfaz</td><td><span class="state-pill">firmware listo</span></td></tr>
-            <tr><td><b>2 · Ethernet</b></td><td>Ableton → MIDI → puente → UDP por cable</td><td class="num">1–3 ms</td><td>WT32-ETH01, level shifter</td><td><span class="state-pill">firmware listo</span></td></tr>
-            <tr><td><b>3 · Wi-Fi</b></td><td>Igual, por Wi-Fi</td><td class="num">5–30 ms</td><td>ESP32-S3 SuperMini</td><td><span class="state-pill">firmware listo</span></td></tr>
-            <tr><td><b>4 · Radio</b></td><td>El puente manda por USB a un transmisor nRF24; la obra recibe a 2,4 GHz</td><td class="num">1–2 ms</td><td>2 × nRF24L01+, ESP32-C3 + S3</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>0 · Obra actual</b></td><td>Sin música; secuencias autónomas</td><td class="num">—</td><td>La protección: 74AHCT125, fusible de 10 A, 330 Ω, 1000 µF y mini protoboard</td><td><span class="state-pill ok">construida</span></td></tr>
+            <tr><td><b>1 · Grabación</b></td><td>La ESP32-S3 manda «reproducir» a un DFPlayer Mini por su UART1 al arrancar; las secuencias se encajan a mano en la línea de tiempo</td><td class="num">~150 ms fijos</td><td>DFPlayer Mini, bocina o jack a la interfaz</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>2 · Ethernet</b></td><td>Ableton → MIDI → puente → UDP por cable</td><td class="num">1–3 ms</td><td>W5500 Lite en la ESP32-S3</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>3 · Wi-Fi</b></td><td>Igual, por el Wi-Fi de la ESP32-S3</td><td class="num">5–30 ms</td><td>Nada nuevo</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>4 · Radio</b></td><td>El puente manda por USB a un transmisor nRF24; la obra recibe a 2,4 GHz</td><td class="num">1–2 ms</td><td>2 × nRF24L01+, ESP32-C3 transmisor</td><td><span class="state-pill">firmware listo</span></td></tr>
           </tbody>
         </table>
       </div>
 
       <div style="margin-top: 40px" class="reveal">
-        <h3>Piezas para las cuatro versiones nuevas</h3>
-        <p class="muted">Precios orientativos de las fichas de UNIT. Las piezas repetidas entre versiones (el ESP32-S3, el 74AHCT125) se cuentan una vez en el total conjunto.</p>
+        <h3>Piezas por versión</h3>
+        <p class="muted">Precios orientativos de las fichas de UNIT. La versión 0 es la base de todas: su protección se pide una sola vez y protege la tira en las cinco.</p>
         <div id="bom-shadows"></div>
       </div>
     </div>
@@ -261,7 +261,7 @@
       <h2>Cinco meses, tres entregas.</h2>
       <div class="split">
         <ul class="timeline reveal">
-          <li><span class="when">Noviembre 2026</span><h4>Arranque</h4><p>Recibimos las piezas de Shadows & Lights y de Praxiboscopic. Montamos la versión 1 (DFPlayer) en la obra y cortamos una letra de prueba (la I) de smart_signage.</p></li>
+          <li><span class="when">Noviembre 2026</span><h4>Arranque</h4><p>Recibimos las piezas de Shadows & Lights y de Praxiboscopic. Completamos la versión 0 (74AHCT125 y fusible), montamos la versión 1 (DFPlayer) en la obra y cortamos una letra de prueba (la I) de smart_signage.</p></li>
           <li><span class="when">Diciembre 2026</span><h4>Sincronía y taller</h4><p>Versiones 2 y 3 con Ableton Live; publicamos las primeras latencias. Praxiboscopic: impresión de las 28 piezas y corte de las 41; armado de la mesa.</p></li>
           <li><span class="when">Enero 2027</span><h4>Radio y letras</h4><p>Versión 4 por nRF24, medida contra las otras tres. Praxiboscopic proyectando. Corte de las letras U, N y T; electrónica de las cuatro.</p></li>
           <li><span class="when">Febrero 2027</span><h4>Presentación</h4><p>smart_signage completa con tapete y mesa. Presentación conjunta de las tres obras con los créditos de UNIT; videos para sus canales.</p></li>
@@ -272,7 +272,7 @@
             <h4>Lo que ya está hecho antes de empezar</h4>
             <ul class="clean small">
               <li>Shadows & Lights construida y expuesta; simulador con VM de Arduino, exportación de video y la versión 1 integrada en el generador de secuencias con su prueba automática.</li>
-              <li>Firmware <code>show_remote</code> para ESP32 con tres transportes (Ethernet, Wi-Fi, nRF24), transmisor para ESP32-C3, puente MIDI→red con medición de latencia y mapa de notas para Ableton.</li>
+              <li>Firmware <code>show_remote</code> para la ESP32-S3 de la obra con tres transportes (Ethernet, Wi-Fi, nRF24), transmisor para ESP32-C3, puente MIDI→red con medición de latencia y mapa de notas para Ableton.</li>
               <li>Praxiboscopic: 122 pruebas, archivos de corte e impresión generados, lista de compras con precio en todo.</li>
               <li>smart_signage: generador de letras, firmware del controlador y de los dos nodos, listas de compras y fabricación.</li>
             </ul>

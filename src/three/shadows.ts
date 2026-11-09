@@ -146,15 +146,17 @@ export class ShadowsScene {
       this.spots.push(sp);
     }
 
-    // caja de control detrás del cuadro (versión 0: Mega 2560 + fuente)
+    // electrónica en una esquina de la caja, bajo el borde de la tapa: ESP32-S3 SuperMini (2,2 × 1,8 cm) y la mini
+    // protoboard de 170 puntos (4,7 × 3,5 cm) con el 74AHCT125. Se ve al levantar la tapa con «Ver por dentro».
     this.box = new THREE.Group();
-    const boxMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2e, roughness: 0.7 });
-    const ctl = new THREE.Mesh(new THREE.BoxGeometry(14, 9, 3), boxMat);
-    ctl.position.set(-14, -16, -1.7);
-    const psu = new THREE.Mesh(new THREE.BoxGeometry(11, 6, 3), new THREE.MeshStandardMaterial({ color: 0xc8c8cc, metalness: 0.6, roughness: 0.4 }));
-    psu.position.set(10, -16, -1.7);
-    this.box.add(ctl, psu);
-    this.box.visible = false;
+    const proto = new THREE.Mesh(new THREE.BoxGeometry(3.5, 4.7, 0.9), new THREE.MeshStandardMaterial({ color: 0xf2f2f2, roughness: 0.8 }));
+    proto.position.set(-27.6, -26.9, 0.45);
+    const chip = new THREE.Mesh(new THREE.BoxGeometry(0.75, 1.9, 0.5), new THREE.MeshStandardMaterial({ color: 0x1b1b1f, roughness: 0.5 }));
+    chip.position.set(-27.6, -26.9, 1.15);
+    const board = new THREE.Mesh(new THREE.BoxGeometry(1.8, 2.2, 0.35), new THREE.MeshStandardMaterial({ color: 0x1f6fb0, roughness: 0.5 }));
+    board.position.set(-27.6, -22.9, 0.6);
+    for (const m of [proto, chip, board]) m.castShadow = m.receiveShadow = true;
+    this.box.add(proto, chip, board);
     scene.add(this.box);
 
     this.viewer.onTick((dt) => this.tick(dt));
@@ -222,19 +224,13 @@ export class ShadowsScene {
       sp.target.updateMatrixWorld();
     }
 
-    // explosión: la tapa sube, las placas se despegan un poco y aparece la caja de control
+    // explosión: la tapa sube, las placas se despegan un poco y queda a la vista la electrónica de la esquina
     this.explode = damp(this.explode, this.explodeTarget, 6, dt);
     this.cover.position.z = this.explode * 10;
     for (const m of this.plates.children) {
       const b = (m as THREE.Mesh).userData.base as THREE.Vector3;
       m.position.set(b.x, b.y, b.z + this.explode * 3.5);
     }
-    this.box.visible = this.explode > 0.05;
-    this.box.position.z = -8 * this.explode;
-    for (const ch of this.box.children) {
-      const mat = (ch as THREE.Mesh).material as THREE.MeshStandardMaterial;
-      mat.transparent = true;
-      mat.opacity = Math.min(1, this.explode * 1.4);
-    }
+    this.box.position.z = this.explode * 1.5;
   }
 }
