@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aminoacid × UNIT · Tres obras, una alianza</title>
+  <meta name="description" content="Propuesta de alianza entre el estudio Aminoacid y UNIT Electronics: Shadows & Lights con música sincronizada, la mesa de cine mecánico Praxiboscopic y las letras luminosas smart_signage. Qué está hecho, qué sigue y qué piezas hacen falta." />
+  <meta property="og:title" content="Aminoacid × UNIT · Tres obras, una alianza" />
+  <meta property="og:description" content="Luz, mecánica y letras que responden: lo que ya construimos y lo que proponemos construir con piezas de UNIT." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0b0d'/%3E%3Crect x='7' y='7' width='18' height='18' fill='none' stroke='%23f0b429' stroke-width='2.5'/%3E%3Crect x='12' y='12' width='8' height='8' fill='%23f0b429'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a class="brand" href="#inicio">Aminoacid <span>× UNIT Electronics</span></a>
+    <ul>
+      <li><a href="#alianza">La alianza</a></li>
+      <li><a href="#shadows">Shadows &amp; Lights</a></li>
+      <li><a href="#praxi">Praxiboscopic</a></li>
+      <li><a href="#signage">smart_signage</a></li>
+      <li><a href="#pedimos">Qué pedimos</a></li>
+      <li><a href="#calendario">Calendario</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================ portada -->
+  <header class="hero" id="inicio">
+    <div class="scene" data-scene="shadows-hero" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow">Propuesta de alianza · noviembre de 2026</span>
+      <h1>Tres obras que se encienden con sus piezas.</h1>
+      <p class="lead">Un cuadro de luz y sombra que aprenderá a escuchar música, una mesa de cine mecánico que se arma sin tornillos y las letras de UNIT a tamaño de persona, respondiendo a quien se acerque. Esto es lo que ya construimos, lo que sigue y lo que necesitamos de UNIT Electronics para llegar.</p>
+      <div class="cta">
+        <a class="btn primary" href="#alianza">Ver la propuesta</a>
+        <a class="btn" href="#pedimos">Ir a la lista de piezas</a>
+      </div>
+    </div>
+    <div class="hint">Arriba: la obra Shadows &amp; Lights en vivo · arrastra para girar</div>
+  </header>
+
+  <!-- ============================================================ estudio -->
+  <section class="block" id="estudio">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Quiénes somos</span>
+          <h2>Aminoacid: un estudio que simula antes de construir.</h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">Hacemos obras de luz y mecánica para galerías y espacios públicos. Cada pieza nace como un simulador en el navegador —con la física de la luz, el código real de la placa y los archivos de fabricación— y después se construye tal cual.</p>
+          <p class="muted">Eso cambia la relación con las piezas: antes de comprar un módulo ya sabemos qué pin lleva, cuántos miliamperios pide y cómo se ve encendido. Lo que mostramos aquí no son renders: son los modelos con los que fabricamos, y todo el código está en repositorios abiertos que enlazan a cada ficha de UNIT.</p>
+        </div>
+      </div>
+      <div class="grid cols-3" style="margin-top: 48px">
+        <div class="card state reveal"><i class="dot"></i><div><h4>Shadows &amp; Lights</h4><p class="small">Construida. Cuadro de 60 × 60 con 28 placas y 120 LEDs; Arduino Mega. Simulador con VM de Arduino, exportación de video y generador de secuencias.</p></div></div>
+        <div class="card state reveal"><i class="dot next"></i><div><h4>Praxiboscopic</h4><p class="small">Diseñada hasta el último archivo: 122 pruebas en verde, STL y DXF listos, lista de compras con precio en cada renglón. Falta cortar, imprimir y armar.</p></div></div>
+        <div class="card state reveal"><i class="dot new"></i><div><h4>smart_signage</h4><p class="small">Nueva. Las cuatro letras de UNIT a 1,20 m en acrílico opal, con NeoPixel y sensores ESP32 inalámbricos. Geometría, firmware y lista de compras ya están en su repo.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ alianza -->
+  <section class="block" id="alianza">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">La alianza</span>
+          <h2>Piezas en préstamo, créditos en cada obra.</h2>
+          <p class="muted">La propuesta es sencilla: UNIT nos presta o facilita las piezas y los servicios de taller de esta lista; nosotros construimos las tres obras con ellas y UNIT aparece como patrocinador en cada lugar donde se muestren.</p>
+        </div>
+        <div class="grid cols-2 reveal">
+          <div class="card"><h4>Crédito en la obra</h4><p class="small">Placa de patrocinio junto a cada pieza expuesta, en la ficha de sala y en cada publicación en redes. Las letras de smart_signage son, literalmente, su logotipo encendido.</p></div>
+          <div class="card"><h4>Contenido</h4><p class="small">Videos de las obras encendidas (el simulador ya exporta video de cualquier vista), fotografías del proceso y del armado con sus módulos a la vista.</p></div>
+          <div class="card"><h4>Repositorios abiertos</h4><p class="small">Tres repositorios con firmware, archivos de fabricación y listas de compras que enlazan a las fichas de UNIT: código real que sus clientes pueden copiar.</p></div>
+          <div class="card"><h4>Mediciones publicadas</h4><p class="small">Latencias reales de Ethernet, Wi-Fi, nRF24 y ESP-NOW en el mismo montaje, con el método y los scripts. Material para sus tutoriales.</p></div>
+        </div>
+      </div>
+      <blockquote class="quote reveal">Lo que pedimos cabe en dos cajas de envío y una tarde de taller. Lo que devolvemos son tres obras que llevan su nombre.</blockquote>
+    </div>
+  </section>
+
+  <!-- ============================================================ shadows -->
+  <section class="block" id="shadows">
+    <div class="wrap">
+      <span class="eyebrow">Proyecto 1 · construida</span>
+      <h2>Shadows &amp; Lights</h2>
+      <div class="split" style="margin-bottom: 40px">
+        <div class="reveal">
+          <p class="lead">Un cuadro de 60 × 60 cm. Veintiocho placas de MDF puestas de canto. Una tapa con un hueco de 50 × 50 y, escondida bajo su borde, una tira de 120 LEDs inclinada 30°.</p>
+          <p class="muted">La luz nunca se ve directa: solo sus sombras. Cuando un cometa recorre la tira, las sombras de las placas giran, se alargan y se cruzan como manecillas. Las seis secuencias están medidas fotograma a fotograma de los videos originales y corren en un Arduino Mega 2560 con FastLED.</p>
+          <p class="muted">El modelo de la derecha es el de fabricación: las posiciones de las placas, la altura de la tapa y la tira son las reales, y las secuencias son el mismo código que corre en la placa, portado línea por línea.</p>
+        </div>
+        <div class="reveal">
+          <div class="scene" data-scene="shadows" id="shadows-3d"><div class="scene-hint">arrastra para girar · ⌘/ctrl + rueda para acercar</div></div>
+          <div class="progress"><i id="shadows-time"></i></div>
+          <div class="controls">
+            <label>Secuencia <select id="seq-select"></select></label>
+            <label>Ver por dentro <input type="range" id="shadows-explode" min="0" max="1" step="0.01" value="0" /></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid cols-4 reveal">
+        <div class="card"><div class="stat">120</div><p class="small">LEDs WS2812B en 2 m de tira a 60/m, bajo el borde del hueco.</p></div>
+        <div class="card"><div class="stat">28</div><p class="small">placas de 4,5 × 4,5 × 0,5 cm, puestas de canto sobre el panel.</p></div>
+        <div class="card"><div class="stat">6</div><p class="small">secuencias medidas de los videos, más las diseñadas en el simulador.</p></div>
+        <div class="card"><div class="stat">V0</div><p class="small">la obra que existe hoy. Todo lo que sigue se monta sobre ella.</p></div>
+      </div>
+
+      <div style="margin-top: 72px">
+        <span class="eyebrow">La siguiente etapa</span>
+        <h3>Que la luz escuche la música.</h3>
+        <div class="split rev">
+          <div class="reveal">
+            <p class="muted">Hoy la obra corre sola. Queremos que cada secuencia tenga su música y que, en la versión más ambiciosa, la luz y el sonido salgan de la misma partitura: Ableton Live toca y, nota a nota, despierta colores, secuencias y píxeles.</p>
+            <p class="muted">Lo diseñamos en cinco versiones, de la más simple a la más robusta, con las piezas más compactas del catálogo de UNIT. Todas comparten un protocolo de 8 bytes y un mismo firmware para ESP32 con el transporte intercambiable; el firmware, el puente MIDI y las pruebas ya están escritos. Lo que falta es el hardware.</p>
+          </div>
+          <div class="reveal">
+            <div class="tabs" id="version-tabs"></div>
+            <div class="version-info" id="version-info"></div>
+          </div>
+        </div>
+        <div class="scene wide reveal" data-scene="audio" id="audio-3d" style="margin-top: 20px"><div class="scene-hint">la mesa de trabajo de cada versión · las piezas a tamaño real · las etiquetas enlazan a las fichas</div></div>
+      </div>
+
+      <div class="table-wrap reveal" style="margin-top: 40px">
+        <table>
+          <caption>Cómo se sincroniza cada versión</caption>
+          <thead><tr><th>Versión</th><th>Sincronía</th><th>Latencia</th><th>Qué hace falta</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td><b>0 · Obra actual</b></td><td>Sin música; secuencias autónomas</td><td class="num">—</td><td>Nada: Mega 2560, tira y fuente</td><td><span class="state-pill ok">construida</span></td></tr>
+            <tr><td><b>1 · Grabación</b></td><td>El Mega manda «reproducir» a un DFPlayer Mini al arrancar; las secuencias se encajan a mano en la línea de tiempo</td><td class="num">~150 ms fijos</td><td>DFPlayer Mini, bocina o jack a la interfaz</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>2 · Ethernet</b></td><td>Ableton → MIDI → puente → UDP por cable</td><td class="num">1–3 ms</td><td>WT32-ETH01, level shifter</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>3 · Wi-Fi</b></td><td>Igual, por Wi-Fi</td><td class="num">5–30 ms</td><td>ESP32-S3 SuperMini</td><td><span class="state-pill">firmware listo</span></td></tr>
+            <tr><td><b>4 · Radio</b></td><td>El puente manda por USB a un transmisor nRF24; la obra recibe a 2,4 GHz</td><td class="num">1–2 ms</td><td>2 × nRF24L01+, ESP32-C3 + S3</td><td><span class="state-pill">firmware listo</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 40px" class="reveal">
+        <h3>Piezas para las cuatro versiones nuevas</h3>
+        <p class="muted">Precios orientativos de las fichas de UNIT. Las piezas repetidas entre versiones (el ESP32-S3, el 74AHCT125) se cuentan una vez en el total conjunto.</p>
+        <div id="bom-shadows"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ praxiboscopic -->
+  <section class="block" id="praxi">
+    <div class="wrap">
+      <span class="eyebrow">Proyecto 2 · lista para fabricar</span>
+      <h2>Praxiboscopic</h2>
+      <div class="split">
+        <div class="reveal">
+          <p class="lead">Cine sin pantalla digital: una animación se imprime en película transparente, dos tambores la mueven con la mano del visitante y un LED la proyecta a destellos, un fotograma por marca.</p>
+          <p class="muted">Praxiboscopic es un estudio de animación y un simulador de proyección mecánica en el navegador. Diseña el loop, genera los fotogramas, los reparte en la película, simula el transporte, la óptica y el estroboscopio, y produce los archivos de fabricación. La versión que queremos construir es la <b>mesa de dos tambores</b>: 394 × 268 × 125 mm, piso y cubierta de MDF de 5,5 mm, paredes de acrílico transparente para que se vea la electrónica, y ni un tornillo: todo encaja por ranuras.</p>
+          <p class="muted">Está diseñada hasta el último archivo: 16 piezas impresas en PETG, 41 piezas de corte láser en tres materiales, lista de compras con precio en cada renglón y textos listos para los talleres. Aquí es donde UNIT puede ayudar con más que piezas: con su servicio de corte láser y de impresión 3D.</p>
+        </div>
+        <div class="reveal">
+          <div class="scene" data-scene="praxi" id="praxi-3d"><div class="scene-hint">piezas impresas reales (STL) sobre las hojas de corte reales (SVG) · pasa el cursor</div></div>
+          <div class="controls">
+            <label>Separar piezas <input type="range" id="praxi-explode" min="0" max="1" step="0.01" value="0.5" /></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery reveal" style="margin-top: 40px">
+        <figure><img src="img/praxi-tambores.jpg" alt="La mesa de dos tambores en el simulador 3D" loading="lazy" /><figcaption>La mesa de dos tambores: la película va y viene con la mano sobre cada tambor.</figcaption></figure>
+        <figure><img src="img/praxi-tambores-explosion.jpg" alt="Vista explosionada del ensamble" loading="lazy" /><figcaption>Ensamble sin tornillos en 12 pasos, con vista explosionada en el simulador.</figcaption></figure>
+        <figure><img src="img/praxi-mechanical.jpg" alt="Simulación mecánica de la proyección" loading="lazy" /><figcaption>Simulación mecánica: rodillos, ventana, LED, lente y pantalla a escala 1:1.</figcaption></figure>
+        <figure><img src="img/praxi-compras-tambores.jpg" alt="Lista de compras con cada pieza en 3D" loading="lazy" /><figcaption>Lista de compras: cada pieza en 3D, precios en UNIT y qué revisar antes de pagar.</figcaption></figure>
+      </div>
+
+      <div class="grid cols-3 reveal" style="margin-top: 40px">
+        <div class="card"><div class="stat">28<small>piezas</small></div><p class="small">impresas en PETG: 16 modelos distintos, 373 g, unas 16 h de máquina.</p></div>
+        <div class="card"><div class="stat">41<small>piezas</small></div><p class="small">de corte láser: MDF 5,5 mm, acrílico transparente y negro de 3 mm; 27 m de corte.</p></div>
+        <div class="card"><div class="stat">0<small>tornillos</small></div><p class="small">ranuras, pestañas y cuñas; el único tornillo es el prisionero de cada cople.</p></div>
+      </div>
+
+      <div style="margin-top: 40px" class="reveal">
+        <h3>Qué pedimos para Praxiboscopic</h3>
+        <p class="muted">Electrónica y mecánica del catálogo de UNIT, más los dos servicios de taller. Los archivos de corte (DXF/SVG/PDF 1:1) y los STL están en <a href="https://ericmargay.github.io/praxiboscopic/" target="_blank" rel="noopener">el sitio del proyecto</a>.</p>
+        <div id="bom-praxi"></div>
+        <div id="services-praxi" style="margin-top: 16px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ smart_signage -->
+  <section class="block" id="signage">
+    <div class="wrap">
+      <span class="eyebrow">Proyecto 3 · nuevo</span>
+      <h2>smart_signage: sus letras, encendidas.</h2>
+      <div class="split rev">
+        <div class="reveal">
+          <div class="scene" data-scene="letras" id="letras-3d"><div class="scene-hint">haz clic en el tapete o en los pads de la mesa · arrastra para girar</div></div>
+          <div class="controls">
+            <button class="btn small" id="btn-mat-0">Pisar el tapete (izq.)</button>
+            <button class="btn small" id="btn-mat-1">Pisar el tapete (der.)</button>
+            <span class="spacer"></span>
+            <span>Mano en la mesa:</span>
+            <button class="btn small" data-pad="U">U</button>
+            <button class="btn small" data-pad="N">N</button>
+            <button class="btn small" data-pad="I">I</button>
+            <button class="btn small" data-pad="T">T</button>
+          </div>
+          <div class="controls">
+            <label>Ver las capas <input type="range" id="letras-explode" min="0" max="1" step="0.01" value="0" /></label>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="lead">Las cuatro letras de UNIT a 1,20 m de alto, en acrílico blanco translúcido, respirando solas y respondiendo a quien pisa un tapete o apoya la mano en una mesa.</p>
+          <p class="muted">Cada letra es una caja: cara y costados de acrílico opal de 3 mm, fondo de MDF con una tira WS2815 en serpentina cada 10 cm, esquineros impresos. En reposo, un blanco cálido respira con un desfase por letra y un destello recorre cada tira. Cuando alguien pisa el tapete, una onda blanca sale de la letra más cercana y cruza la palabra. Cuando una mano se posa sobre uno de los pads de la mesa, su letra se enciende de color mientras la mano esté.</p>
+          <p class="muted">Los sensores son nodos ESP32 con power bank que hablan por ESP-NOW —sin router, 2 a 5 ms— con un ESP32-S3 que maneja las cuatro tiras. El tapete lleva dos FSR; la mesa, cuatro pads de cinta de cobre bajo el acrílico leídos por un UNIT TouchDot S3. La geometría se genera con un script a partir de la altura y el trazo; cuando UNIT comparta el vector de su logotipo, se sustituyen los polígonos y todo lo demás se regenera.</p>
+        </div>
+      </div>
+
+      <div class="grid cols-4 reveal" style="margin-top: 40px">
+        <div class="card"><div class="stat">3,16<small>m</small></div><p class="small">de ancho total; letras de 1,20 m con trazo de 24 cm y 20 cm de fondo.</p></div>
+        <div class="card"><div class="stat">1086</div><p class="small">LEDs en 18,1 m de tira: U 336, N 390, I 144, T 216.</p></div>
+        <div class="card"><div class="stat">115<small>W</small></div><p class="small">en uso (326 W si todo fuera blanco pleno). Fuente de 12 V 30 A, brillo al 50 %.</p></div>
+        <div class="card"><div class="stat">2–5<small>ms</small></div><p class="small">del sensor a la luz por ESP-NOW, sin red Wi-Fi de por medio.</p></div>
+      </div>
+
+      <div style="margin-top: 40px" class="reveal">
+        <h3>Qué pedimos para smart_signage</h3>
+        <p class="muted">Las caras caben enteras en una cama de corte de 1300 × 900 mm; si la de UNIT es más chica, el script parte cada cara en tramos. El acrílico y el MDF los compramos nosotros.</p>
+        <div id="bom-signage"></div>
+        <div id="services-signage" style="margin-top: 16px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ resumen -->
+  <section class="block" id="pedimos">
+    <div class="wrap">
+      <span class="eyebrow">En resumen</span>
+      <h2>Qué pedimos y qué devolvemos.</h2>
+      <div class="split rev">
+        <div class="reveal">
+          <div id="resumen"></div>
+          <p class="small" style="margin-top: 12px">Precios orientativos de las fichas indexadas de UNIT en noviembre de 2026; se confirman en tienda. Las piezas marcadas «fuera de UNIT» se compran por nuestra cuenta. Los servicios de taller se cotizan con los archivos del repositorio.</p>
+        </div>
+        <div class="reveal">
+          <h3>Lo que devolvemos</h3>
+          <ul class="clean">
+            <li><b>Tres obras con su crédito.</b> Placa de patrocinio en cada exposición, mención en la ficha de sala y en cada publicación.</li>
+            <li><b>Las letras.</b> smart_signage es su logotipo a tamaño de persona: puede viajar a sus eventos y a su tienda cuando no esté expuesto.</li>
+            <li><b>Contenido para sus canales.</b> Videos de las obras encendidas, fotos del armado con sus módulos, un video corto por proyecto con el proceso.</li>
+            <li><b>Tres repositorios abiertos</b> con firmware, archivos de fabricación y listas de compras que enlazan a sus fichas: ejemplos reales para sus clientes.</li>
+            <li><b>Mediciones.</b> Latencias de Ethernet, Wi-Fi, nRF24 y ESP-NOW en el mismo montaje, con el método y los scripts publicados.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ calendario -->
+  <section class="block" id="calendario">
+    <div class="wrap">
+      <span class="eyebrow">Calendario propuesto</span>
+      <h2>Cinco meses, tres entregas.</h2>
+      <div class="split">
+        <ul class="timeline reveal">
+          <li><span class="when">Noviembre 2026</span><h4>Arranque</h4><p>Recibimos las piezas de Shadows & Lights y de Praxiboscopic. Montamos la versión 1 (DFPlayer) en la obra y cortamos una letra de prueba (la I) de smart_signage.</p></li>
+          <li><span class="when">Diciembre 2026</span><h4>Sincronía y taller</h4><p>Versiones 2 y 3 con Ableton Live; publicamos las primeras latencias. Praxiboscopic: impresión de las 28 piezas y corte de las 41; armado de la mesa.</p></li>
+          <li><span class="when">Enero 2027</span><h4>Radio y letras</h4><p>Versión 4 por nRF24, medida contra las otras tres. Praxiboscopic proyectando. Corte de las letras U, N y T; electrónica de las cuatro.</p></li>
+          <li><span class="when">Febrero 2027</span><h4>Presentación</h4><p>smart_signage completa con tapete y mesa. Presentación conjunta de las tres obras con los créditos de UNIT; videos para sus canales.</p></li>
+          <li><span class="when">Marzo 2027</span><h4>Documentación</h4><p>Repositorios cerrados con lo construido: fotos, mediciones, correcciones a las listas de compras y a los archivos de fabricación.</p></li>
+        </ul>
+        <div class="reveal">
+          <div class="card accent">
+            <h4>Lo que ya está hecho antes de empezar</h4>
+            <ul class="clean small">
+              <li>Shadows & Lights construida y expuesta; simulador con VM de Arduino, exportación de video y la versión 1 integrada en el generador de secuencias con su prueba automática.</li>
+              <li>Firmware <code>show_remote</code> para ESP32 con tres transportes (Ethernet, Wi-Fi, nRF24), transmisor para ESP32-C3, puente MIDI→red con medición de latencia y mapa de notas para Ableton.</li>
+              <li>Praxiboscopic: 122 pruebas, archivos de corte e impresión generados, lista de compras con precio en todo.</li>
+              <li>smart_signage: generador de letras, firmware del controlador y de los dos nodos, listas de compras y fabricación.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contacto">
+    <div class="wrap">
+      <b style="color: var(--fg)">Aminoacid Studio</b> · Eric Margay · <a href="mailto:ericmargay@gmail.com">ericmargay@gmail.com</a>
+      <ul class="links">
+        <li><a href="https://github.com/ericmargay/shadows_and_lights" target="_blank" rel="noopener">shadows_and_lights</a></li>
+        <li><a href="https://ericmargay.github.io/praxiboscopic/" target="_blank" rel="noopener">praxiboscopic</a></li>
+        <li><a href="https://github.com/ericmargay/smart_signage" target="_blank" rel="noopener">smart_signage</a></li>
+        <li><a href="https://github.com/ericmargay/propuesta_unit" target="_blank" rel="noopener">esta presentación</a></li>
+      </ul>
+      <p class="small" style="margin-top: 16px">Los modelos 3D de esta página son los de fabricación de cada proyecto. UNIT Electronics y los nombres de sus productos pertenecen a sus dueños; esta es una propuesta del estudio, no una comunicación de UNIT.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
