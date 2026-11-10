@@ -10,7 +10,7 @@ export interface ComponentDef {
   /** ancho × fondo × alto en mm (ancho en x, fondo en z, alto en y) */
   size: [number, number, number];
   color: number;
-  /** cilindro en lugar de caja (bocinas) */
+  /** cilindro en lugar de caja */
   round?: boolean;
   price?: number;
   link?: string;
@@ -30,9 +30,8 @@ export const COMPONENTS: Record<string, ComponentDef> = {
   shifter: { id: 'shifter', name: '74AHCT125 · 3,3 → 5 V', size: [20, 8, 5], color: 0x55555c, price: 25, note: 'la WS2812B a 5 V pide al menos 3,5 V en el dato; luego 330 Ω y 1000 µF en la entrada de la tira' },
   obra: { id: 'obra', name: 'La obra', tag: 'WS2812B · 120 LEDs', size: [180, 180, 30], color: 0xe8e4dc, note: 'cuadro de 60 × 60 cm; aquí a escala 3:10' },
   dfplayer: { id: 'dfplayer', name: 'DFPlayer Mini', size: [21, 21, 6], color: 0x2b7a3c, price: 45, link: 'https://uelectronics.com/producto/dfplayer-mini-reproductor-mp3-mh2024k-24ss/', note: 'reproduce 0001.mp3 de la microSD al recibir la orden de la ESP32-S3 por su UART1 (GPIO 9)' },
-  speaker: { id: 'speaker', name: 'Bocina 4 Ω 3 W', size: [40, 40, 20], color: 0x26262a, round: true, price: 35, link: 'https://uelectronics.com/producto/bocinas-4-y-8-ohm/', note: 'dentro del cuadro, a SPK1/SPK2' },
-  pam: { id: 'pam', name: 'UNIT PAM8403 · 3 W + 3 W', size: [20, 18, 6], color: 0x2b7a3c, price: 35, link: 'https://uelectronics.com/producto/unit-pam8403-amplificador-de-audio/', note: 'dos bocinas en estéreo desde DAC_L/DAC_R' },
-  jack: { id: 'jack', name: 'Jack 3,5 mm estéreo', size: [12, 12, 20], color: 0x55555c, price: 15, note: 'variante «caja aparte»: la señal de línea viaja por cable a la interfaz y los monitores' },
+  jack: { id: 'jack', name: 'Jack 3,5 mm estéreo', size: [12, 12, 20], color: 0x55555c, price: 15, note: 'en el canto de la caja, con la salida de línea DAC_L/DAC_R del DFPlayer; sin bocinas dentro de la obra' },
+  audioSys: { id: 'audioSys', name: 'Equipo de audio', tag: 'por definir', size: [120, 90, 70], color: 0x3a3a42, note: 'bocinas amplificadas, monitores o el sistema de la sala; llega por un cable de 3,5 mm de 5–10 m' },
   w5500: { id: 'w5500', name: 'W5500 Lite · Ethernet', size: [36, 23, 14], color: 0x245d9e, price: 95, link: 'https://uelectronics.com/producto/w5500-convertidor-ethernet-spi-a-lan/', note: 'se conecta a la ESP32-S3 de la obra (CS en GPIO 10, SPI en 11/12/13)' },
   c3: { id: 'c3', name: 'ESP32-C3 · transmisor', size: [22, 18, 5], color: 0x1f6fb0, price: 90, link: 'https://uelectronics.com/producto/esp32-c3-supermini-tipo-c-tarjeta-de-expansion/', note: 'recibe los cues por USB-serie y los manda por radio' },
   nrfTx: { id: 'nrfTx', name: 'nRF24 · transmisor', size: [41, 16, 12], color: 0x6b3fa0, price: 85, note: '2,4 GHz a 2 Mbps, con antena; alcance de sala con margen' },
@@ -84,10 +83,10 @@ export const VERSIONS: Version[] = [
   },
   {
     id: 'v1', short: 'V1', name: 'Versión 1 · Música grabada', latency: '~150 ms fijos, compensados', sync: 'DFPlayer Mini en la microSD',
-    summary: 'La ESP32-S3 manda «reproducir pista» al DFPlayer por su UART1 al arrancar el show y adelanta su reloj 150 ms: la música y la luz parten juntas. Las secuencias se encajan a mano en la línea de tiempo del simulador. Bocina dentro del cuadro, o jack estéreo a la interfaz y los monitores si la electrónica va en una caja aparte.',
+    summary: 'La ESP32-S3 manda «reproducir pista» al DFPlayer por su UART1 al arrancar el show y adelanta su reloj 150 ms: la música y la luz parten juntas. Las secuencias se diseñan sobre la pista en el simulador. El DFPlayer va dentro de la caja, sin bocinas: su salida de línea sale por un jack de 3,5 mm y un cable largo hasta el equipo de audio, que está por definir.',
     status: 'Firmware y simulador listos; falta el hardware',
-    placements: [...base(0), { id: 'dfplayer', col: 3.05, row: 1.8 }, { id: 'speaker', col: 4.15, row: 1.8 }, { id: 'pam', col: 3.05, row: 2.7 }, { id: 'jack', col: 4.15, row: 2.7 }, { id: 'arturia', col: 5.25, row: 2.7 }, { id: 'krk', col: 6.2, row: 1.8 }],
-    links: [...baseLinks, { from: 's3', to: 'dfplayer', kind: 'serial' }, { from: 'dfplayer', to: 'speaker', kind: 'audio' }, { from: 'dfplayer', to: 'pam', kind: 'audio' }, { from: 'pam', to: 'jack', kind: 'audio' }, { from: 'jack', to: 'arturia', kind: 'audio' }, { from: 'arturia', to: 'krk', kind: 'audio' }],
+    placements: [...base(0), { id: 'dfplayer', col: 3.05, row: 1.8 }, { id: 'jack', col: 4.15, row: 1.8 }, { id: 'audioSys', col: 5.5, row: 1.8 }],
+    links: [...baseLinks, { from: 's3', to: 'dfplayer', kind: 'serial' }, { from: 'dfplayer', to: 'jack', kind: 'audio' }, { from: 'jack', to: 'audioSys', kind: 'audio' }],
   },
   {
     id: 'v2', short: 'V2', name: 'Versión 2 · Ethernet', latency: '1–3 ms, sin jitter', sync: 'Ableton Live → UDP por cable',

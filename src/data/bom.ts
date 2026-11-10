@@ -31,11 +31,11 @@ export const SHADOWS_BOM: BomGroup[] = [
     ],
   },
   {
-    id: 'v1', title: 'Versión 1 · música grabada (DFPlayer Mini)', items: [
-      { name: 'DFPlayer Mini MH2024K-24SS', qty: 1, price: 45, unit: U('dfplayer-mini-reproductor-mp3-mh2024k-24ss'), key: 'dfplayer', note: 'por la UART1 de la ESP32-S3 (GPIO 9)' },
-      { name: 'Bocina 4 Ω 3 W', qty: 1, price: 35, unit: U('bocinas-4-y-8-ohm'), key: 'bocina' },
-      { name: 'UNIT PAM8403 · 3 W + 3 W', qty: 1, price: 35, unit: U('unit-pam8403-amplificador-de-audio'), key: 'pam', note: 'estéreo desde DAC_L/DAC_R' },
-      { name: 'Jack 3,5 mm estéreo hembra para chasis', qty: 1, price: 15, key: 'jack', note: 'salida de línea a la interfaz Arturia' },
+    id: 'v1', title: 'Versión 1 · música grabada (DFPlayer Mini con salida jack)', note: 'Sin bocinas dentro de la obra: la salida de línea del DFPlayer sale por un jack de 3,5 mm hacia el equipo de audio, que está por definir.', items: [
+      { name: 'DFPlayer Mini MH2024K-24SS', qty: 1, price: 45, unit: U('dfplayer-mini-reproductor-mp3-mh2024k-24ss'), key: 'dfplayer', note: 'por la UART1 de la ESP32-S3 (GPIO 9); se usa su salida de línea DAC_L/DAC_R' },
+      { name: 'Jack 3,5 mm estéreo hembra para chasis', qty: 1, price: 15, key: 'jack', note: 'en el canto de la caja' },
+      { name: 'Cable 3,5 mm estéreo macho-macho, 5–10 m', qty: 1, price: 150, key: 'cable35', outside: true, note: 'hasta el equipo de audio' },
+      { name: 'Capacitor 10 µF (acoplo DAC → jack)', qty: 2, price: 2, unit: U('capacitor-electrolitico-50v'), key: 'cap10-df', note: 'opcional: quita la continua de la salida' },
       { name: 'microSD 8–32 GB', qty: 1, price: 90, key: 'sd' },
       { name: 'Capacitor 1000 µF (alimentación del DFPlayer)', qty: 1, price: 6, unit: U('capacitor-electrolitico-50v'), key: 'cap1000-df' },
       { name: 'Resistencia 1 kΩ', qty: 1, price: 1, key: 'r1k', note: 'en serie entre el GPIO 9 y el RX del DFPlayer' },
